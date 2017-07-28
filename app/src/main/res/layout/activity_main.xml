@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="always">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnr"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:onClick="ChangeFragment"
+                android:text="@string/btn_label1" />
+
+            <Button
+                android:id="@+id/btnq"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="ChangeFragment"
+                android:text="@string/btn_label2" />
+            <Button
+                android:id="@+id/btnm"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="ChangeFragment"
+                android:text="@string/btn_label3" />
+
+
+        <fragment
+            android:name="com.omnify.hire.BlankFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/output1"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

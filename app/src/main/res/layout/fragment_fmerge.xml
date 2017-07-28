@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#45cdea"
+    android:orientation="vertical"
+    tools:context=".fmerge">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:hint="hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:textColor="#FFffff"
+        android:textSize="30sp"
+        android:id="@+id/tv"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn"
+        android:text="Sort Above Number"/>
+    <TextView
+        android:hint="Sorted Number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:textColor="#FFffff"
+        android:textSize="30sp"
+        android:id="@+id/tv2"/>
+</LinearLayout>

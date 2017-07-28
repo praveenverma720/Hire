@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Hire</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="btn_label1"> Generate Random Number </string>
+    <string name="btn_label2"> Generate Random Number With Quick Sort</string>
+    <string name="btn_label3"> Generate Random Number With Merge Sort </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Click On Above Button To Perform Operation  </string>
+</resources>
