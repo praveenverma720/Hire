@@ -20,8 +20,7 @@ Button btnr,btnq,btnm,btnstart,btnstop;
         btnr=(Button)findViewById(R.id.btnr);
         btnq = (Button) findViewById(R.id.btnq);
         btnm = (Button)findViewById(R.id.btnm);
-        btnstart = (Button) findViewById(R.id.btnstart);
-        btnstop = (Button) findViewById(R.id.btnstop);
+
     }
        public void ChangeFragment(View view)
     {

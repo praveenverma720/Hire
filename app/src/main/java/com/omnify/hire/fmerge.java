@@ -21,7 +21,7 @@ import java.util.Random;
  */
 public class fmerge extends Fragment {
     ArrayList<Integer> randomSet=new ArrayList<Integer>();
-    List<Integer> result1 = new ArrayList<Integer>();
+
     public fmerge() {
         // Required empty public constructor
     }
@@ -45,105 +45,79 @@ public class fmerge extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                result1=mergeSort(randomSet);
+                List<Integer> list = new ArrayList<Integer>();
+                list=mergeSort(randomSet);
 
-                output2.setText(Arrays.toString(result1.toArray()));
+                output2.setText(Arrays.toString(list.toArray()));
             }
         });
         output.setText(Arrays.toString(randSet.toArray()));
     return  view;
     }
-    private List<Integer> mergeSort(List<Integer> input){
+    public ArrayList<Integer> mergeSort(ArrayList<Integer> whole) {
+        ArrayList<Integer> left = new ArrayList<Integer>();
+        ArrayList<Integer> right = new ArrayList<Integer>();
+        int center;
 
-        if(input.size() <= 1){
-            return input;
-        }
-
-        int middle = (int) Math.ceil((double)input.size() / 2);
-        //int[] left = new int[middle];
-        List<Integer> left = new ArrayList<>();
-        List<Integer> right = new ArrayList<>();
-        left.add(left.get(middle));
-
-        int rightLength = 0;
-        if(input.size() % 2 == 0){
-            rightLength = middle;
-        }
-        else{
-            rightLength = middle - 1;
-        }
-         right.add(right.get(rightLength));
-
-        int leftIndex = 0;
-        int rightIndex = 0;
-
-        for (int i = 0; i < input.size(); i++) {
-            if(i < middle){
-                left.add(left.get(leftIndex));
-                input.add(input.get(i));
-               left = input;
-                leftIndex++;
+        if (whole.size() == 1) {
+            return whole;
+        } else {
+            center = whole.size()/2;
+            // copy the left half of whole into the left.
+            for (int i=0; i<center; i++) {
+                left.add(whole.get(i));
             }
-            else{
-                right.add(right.get(rightIndex));
-                input.add(input.get(i));
-               right=input;
-                rightIndex++;
+
+            //copy the right half of whole into the new arraylist.
+            for (int i=center; i<whole.size(); i++) {
+                right.add(whole.get(i));
             }
+
+            // Sort the left and right halves of the arraylist.
+            left  = mergeSort(left);
+            right = mergeSort(right);
+
+            // Merge the results back together.
+            merge(left, right, whole);
         }
-
-        left = mergeSort(left);
-        right = mergeSort(right);
-
-        return merge(left, right);
+        return whole;
     }
 
-
-    private List<Integer> merge(List<Integer> left, List<Integer> right){
-        int[] result = new int[left.size() + right.size()];
-        int h=result.length;
-        List<Integer> result1 = new ArrayList<>();
-        result1.add(result1.get(h));
+    private void merge(ArrayList<Integer> left, ArrayList<Integer> right, ArrayList<Integer> whole) {
         int leftIndex = 0;
         int rightIndex = 0;
-        int resultIndex = 0;
+        int wholeIndex = 0;
 
-        while(leftIndex < left.size() || rightIndex < right.size()){
-            if(leftIndex < left.size() && rightIndex < right.size()){
-                if( (left.get(leftIndex).compareTo(right.get(rightIndex))) < 0){
-                  result1.add(result1.get(resultIndex));
-                    left.add(left.get(leftIndex));
-                    result1= left;
-                    leftIndex++;
-                    resultIndex++;
-                }
-                else{
-                    result1.add(result1.get(resultIndex));
-                    right.add(right.get(leftIndex));
-                    result1=right;
-                    rightIndex++;
-                    resultIndex++;
-                }
+        // As long as neither the left nor the right ArrayList has
+        // been used up, keep taking the smaller of left.get(leftIndex)
+        // or right.get(rightIndex) and adding it at both.get(bothIndex).
+        while (leftIndex < left.size() && rightIndex < right.size()) {
+            if ( (left.get(leftIndex).compareTo(right.get(rightIndex))) < 0) {
+                whole.set(wholeIndex, left.get(leftIndex));
+                leftIndex++;
+            } else {
+                whole.set(wholeIndex, right.get(rightIndex));
+                rightIndex++;
             }
-            else if(leftIndex < left.size()){
-                for (int i = resultIndex; i < result.length; i++) {
-                   result1.add(result1.get(i));
-                    left.add(left.get(leftIndex));
-                    result1=left;
-                    leftIndex++;
-                }
-            }
-            else if(rightIndex < right.size()){
-                for (int i = resultIndex; i < result.length; i++) {
-                    result1.add(result1.get(i));
-                    right.add(right.get(leftIndex));
-                    result1=right;
-
-                    rightIndex++;
-                }
-            }
+            wholeIndex++;
         }
 
-        return result1;
+        ArrayList<Integer> rest;
+        int restIndex;
+        if (leftIndex >= left.size()) {
+            // The left ArrayList has been use up...
+            rest = right;
+            restIndex = rightIndex;
+        } else {
+            // The right ArrayList has been used up...
+            rest = left;
+            restIndex = leftIndex;
+        }
+
+        // Copy the rest of whichever ArrayList (left or right) was not used up.
+        for (int i=restIndex; i<rest.size(); i++) {
+            whole.set(wholeIndex, rest.get(i));
+            wholeIndex++;
+        }
     }
 }
